@@ -4,18 +4,28 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-    public class Demo {
+import java.time.Duration;
+
+public class Demo {
         public static WebDriver driver;
-        public static void main(String[] args) throws InterruptedException {
+        @Test
+        public void testn() throws InterruptedException {
 
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
 
             driver.get("https://www.saucedemo.com/");
             System.out.println(driver.getCurrentUrl());
+            System.out.println(driver.getTitle());
+            driver.findElement(By.id("user-name")).sendKeys("standard_user");
+            driver.findElement(By.name("password")).sendKeys("asdasd");
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            driver.findElement(By.className("submit-button btn_action")).click();
+
 
 //            driver.close();
 //            driver.manage().window().maximize();
